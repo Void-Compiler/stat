@@ -2,7 +2,7 @@
 
 import type React from "react"
 
-import { useState, useCallback } from "react"
+import { useState, useCallback, useEffect } from "react"
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
 import { Button } from "@/components/ui/button"
 import { Badge } from "@/components/ui/badge"
@@ -37,10 +37,22 @@ interface UploadedFile {
 }
 
 export default function UploadPage() {
-  const [uploadedFiles, setUploadedFiles] = useState<UploadedFile[]>(
-    JSON.parse(localStorage.getItem("uploadedFiles") || "[]"),
-  )
+  const [uploadedFiles, setUploadedFiles] = useState<UploadedFile[]>([])
   const [dragActive, setDragActive] = useState(false)
+
+  useEffect(() => {
+    if (typeof window !== "undefined") {
+      const savedFiles = localStorage.getItem("uploadedFiles")
+      if (savedFiles) {
+        try {
+          setUploadedFiles(JSON.parse(savedFiles))
+        } catch (error) {
+          console.error("Error parsing saved files:", error)
+          setUploadedFiles([])
+        }
+      }
+    }
+  }, [])
 
   const handleDrag = useCallback((e: React.DragEvent) => {
     e.preventDefault()
@@ -163,7 +175,9 @@ export default function UploadPage() {
                 uploadedAt: new Date().toISOString(),
               }))
 
-            localStorage.setItem("uploadedFiles", JSON.stringify(filesToSave))
+            if (typeof window !== "undefined") {
+              localStorage.setItem("uploadedFiles", JSON.stringify(filesToSave))
+            }
 
             return updated
           })
@@ -188,7 +202,9 @@ export default function UploadPage() {
   const removeFile = (fileId: string) => {
     setUploadedFiles((prev) => {
       const updated = prev.filter((f) => f.id !== fileId)
-      localStorage.setItem("uploadedFiles", JSON.stringify(updated.filter((f) => f.status === "success")))
+      if (typeof window !== "undefined") {
+        localStorage.setItem("uploadedFiles", JSON.stringify(updated.filter((f) => f.status === "success")))
+      }
       return updated
     })
   }
