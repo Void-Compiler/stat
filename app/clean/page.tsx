@@ -69,6 +69,7 @@ export default function CleanPage() {
   const [activeTab, setActiveTab] = useState("overview")
   const [dataIssues, setDataIssues] = useState<DataIssue[]>([])
   const [cleaningRules, setCleaningRules] = useState<CleaningRule[]>([])
+  const [isProceedingToAnalysis, setIsProceedingToAnalysis] = useState(false)
 
   useEffect(() => {
     const savedFiles = localStorage.getItem("uploadedFiles")
@@ -229,8 +230,13 @@ export default function CleanPage() {
     }, 300)
   }
 
-  const handleProceedToAnalysis = () => {
+  const handleProceedToAnalysis = async () => {
     if (selectedFileData) {
+      setIsProceedingToAnalysis(true)
+
+      // Simulate processing time for better UX
+      await new Promise((resolve) => setTimeout(resolve, 800))
+
       localStorage.setItem(
         "cleanedFile",
         JSON.stringify({
@@ -239,6 +245,8 @@ export default function CleanPage() {
           issuesResolved: dataIssues.filter((i) => i.resolved).length,
         }),
       )
+
+      setIsProceedingToAnalysis(false)
     }
   }
 
@@ -553,10 +561,15 @@ export default function CleanPage() {
                           <Button
                             variant="default"
                             onClick={handleProceedToAnalysis}
+                            disabled={isProceedingToAnalysis}
                             className="gap-2 bg-success hover:bg-success/90 shadow-lg hover:shadow-xl transition-all duration-200 hover:scale-105"
                           >
-                            <TrendingUp className="w-4 h-4" />
-                            Proceed to Analysis
+                            {isProceedingToAnalysis ? (
+                              <RefreshCw className="w-4 h-4 animate-spin" />
+                            ) : (
+                              <TrendingUp className="w-4 h-4" />
+                            )}
+                            {isProceedingToAnalysis ? "Preparing Analysis..." : "Proceed to Analysis"}
                           </Button>
                         </Link>
                       </CardContent>
