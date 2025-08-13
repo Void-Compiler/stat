@@ -4,76 +4,93 @@
 @custom-variant dark (&:is(.dark *));
 
 :root {
-  --background: oklch(1 0 0);
-  --foreground: oklch(0.145 0 0);
+  --background: oklch(0.99 0.005 120);
+  --foreground: oklch(0.2 0.02 120);
   --card: oklch(1 0 0);
-  --card-foreground: oklch(0.145 0 0);
+  --card-foreground: oklch(0.2 0.02 120);
   --popover: oklch(1 0 0);
-  --popover-foreground: oklch(0.145 0 0);
-  --primary: oklch(0.205 0 0);
-  --primary-foreground: oklch(0.985 0 0);
-  --secondary: oklch(0.97 0 0);
-  --secondary-foreground: oklch(0.205 0 0);
-  --muted: oklch(0.97 0 0);
-  --muted-foreground: oklch(0.556 0 0);
-  --accent: oklch(0.97 0 0);
-  --accent-foreground: oklch(0.205 0 0);
+  --popover-foreground: oklch(0.2 0.02 120);
+  /* Updated primary to vibrant green for energy and trust */
+  --primary: oklch(0.5 0.15 142);
+  --primary-foreground: oklch(0.99 0.005 120);
+  /* Added vibrant accent color for highlights */
+  --accent: oklch(0.75 0.2 120);
+  --accent-foreground: oklch(0.2 0.02 120);
+  --secondary: oklch(0.96 0.01 120);
+  --secondary-foreground: oklch(0.2 0.02 120);
+  --muted: oklch(0.97 0.005 120);
+  --muted-foreground: oklch(0.45 0.02 120);
   --destructive: oklch(0.577 0.245 27.325);
-  --destructive-foreground: oklch(0.577 0.245 27.325);
-  --border: oklch(0.922 0 0);
-  --input: oklch(0.922 0 0);
-  --ring: oklch(0.708 0 0);
-  --chart-1: oklch(0.646 0.222 41.116);
-  --chart-2: oklch(0.6 0.118 184.704);
-  --chart-3: oklch(0.398 0.07 227.392);
-  --chart-4: oklch(0.828 0.189 84.429);
-  --chart-5: oklch(0.769 0.188 70.08);
+  --destructive-foreground: oklch(0.99 0.005 120);
+  --border: oklch(0.9 0.01 120);
+  --input: oklch(0.96 0.01 120);
+  --ring: oklch(0.5 0.15 142);
+  /* Enhanced chart colors with vibrant, accessible palette */
+  --chart-1: oklch(0.5 0.15 142);
+  --chart-2: oklch(0.6 0.18 200);
+  --chart-3: oklch(0.65 0.2 280);
+  --chart-4: oklch(0.7 0.15 60);
+  --chart-5: oklch(0.55 0.2 320);
   --radius: 0.625rem;
-  --sidebar: oklch(0.985 0 0);
-  --sidebar-foreground: oklch(0.145 0 0);
-  --sidebar-primary: oklch(0.205 0 0);
-  --sidebar-primary-foreground: oklch(0.985 0 0);
-  --sidebar-accent: oklch(0.97 0 0);
-  --sidebar-accent-foreground: oklch(0.205 0 0);
-  --sidebar-border: oklch(0.922 0 0);
-  --sidebar-ring: oklch(0.708 0 0);
+  /* Updated sidebar with subtle green tint */
+  --sidebar: oklch(0.98 0.01 142);
+  --sidebar-foreground: oklch(0.2 0.02 120);
+  --sidebar-primary: oklch(0.5 0.15 142);
+  --sidebar-primary-foreground: oklch(0.99 0.005 120);
+  --sidebar-accent: oklch(0.94 0.02 142);
+  --sidebar-accent-foreground: oklch(0.2 0.02 120);
+  --sidebar-border: oklch(0.9 0.01 142);
+  --sidebar-ring: oklch(0.5 0.15 142);
+  /* Added success and warning colors for better feedback */
+  --success: oklch(0.6 0.15 142);
+  --success-foreground: oklch(0.99 0.005 120);
+  --warning: oklch(0.7 0.15 60);
+  --warning-foreground: oklch(0.2 0.02 60);
+  --info: oklch(0.6 0.18 200);
+  --info-foreground: oklch(0.99 0.005 200);
   --font-dm-sans: "DM Sans", sans-serif;
   --font-space-grotesk: "Space Grotesk", sans-serif;
 }
 
 .dark {
-  --background: oklch(0.145 0 0);
-  --foreground: oklch(0.985 0 0);
-  --card: oklch(0.145 0 0);
-  --card-foreground: oklch(0.985 0 0);
-  --popover: oklch(0.145 0 0);
-  --popover-foreground: oklch(0.985 0 0);
-  --primary: oklch(0.985 0 0);
-  --primary-foreground: oklch(0.205 0 0);
-  --secondary: oklch(0.269 0 0);
-  --secondary-foreground: oklch(0.985 0 0);
-  --muted: oklch(0.269 0 0);
-  --muted-foreground: oklch(0.708 0 0);
-  --accent: oklch(0.269 0 0);
-  --accent-foreground: oklch(0.985 0 0);
-  --destructive: oklch(0.396 0.141 25.723);
-  --destructive-foreground: oklch(0.637 0.237 25.331);
-  --border: oklch(0.269 0 0);
-  --input: oklch(0.269 0 0);
-  --ring: oklch(0.439 0 0);
-  --chart-1: oklch(0.488 0.243 264.376);
-  --chart-2: oklch(0.696 0.17 162.48);
-  --chart-3: oklch(0.769 0.188 70.08);
-  --chart-4: oklch(0.627 0.265 303.9);
-  --chart-5: oklch(0.645 0.246 16.439);
-  --sidebar: oklch(0.205 0 0);
-  --sidebar-foreground: oklch(0.985 0 0);
-  --sidebar-primary: oklch(0.488 0.243 264.376);
-  --sidebar-primary-foreground: oklch(0.985 0 0);
-  --sidebar-accent: oklch(0.269 0 0);
-  --sidebar-accent-foreground: oklch(0.985 0 0);
-  --sidebar-border: oklch(0.269 0 0);
-  --sidebar-ring: oklch(0.439 0 0);
+  --background: oklch(0.08 0.01 120);
+  --foreground: oklch(0.95 0.005 120);
+  --card: oklch(0.12 0.01 120);
+  --card-foreground: oklch(0.95 0.005 120);
+  --popover: oklch(0.12 0.01 120);
+  --popover-foreground: oklch(0.95 0.005 120);
+  --primary: oklch(0.65 0.18 142);
+  --primary-foreground: oklch(0.08 0.01 120);
+  --accent: oklch(0.7 0.2 120);
+  --accent-foreground: oklch(0.08 0.01 120);
+  --secondary: oklch(0.18 0.01 120);
+  --secondary-foreground: oklch(0.95 0.005 120);
+  --muted: oklch(0.15 0.01 120);
+  --muted-foreground: oklch(0.6 0.02 120);
+  --destructive: oklch(0.6 0.2 25);
+  --destructive-foreground: oklch(0.95 0.005 120);
+  --border: oklch(0.2 0.01 120);
+  --input: oklch(0.18 0.01 120);
+  --ring: oklch(0.65 0.18 142);
+  --chart-1: oklch(0.65 0.18 142);
+  --chart-2: oklch(0.7 0.2 200);
+  --chart-3: oklch(0.75 0.22 280);
+  --chart-4: oklch(0.8 0.18 60);
+  --chart-5: oklch(0.65 0.22 320);
+  --sidebar: oklch(0.1 0.01 142);
+  --sidebar-foreground: oklch(0.95 0.005 120);
+  --sidebar-primary: oklch(0.65 0.18 142);
+  --sidebar-primary-foreground: oklch(0.08 0.01 120);
+  --sidebar-accent: oklch(0.15 0.02 142);
+  --sidebar-accent-foreground: oklch(0.95 0.005 120);
+  --sidebar-border: oklch(0.2 0.01 142);
+  --sidebar-ring: oklch(0.65 0.18 142);
+  --success: oklch(0.65 0.18 142);
+  --success-foreground: oklch(0.08 0.01 120);
+  --warning: oklch(0.75 0.18 60);
+  --warning-foreground: oklch(0.08 0.01 60);
+  --info: oklch(0.7 0.2 200);
+  --info-foreground: oklch(0.08 0.01 200);
 }
 
 @theme inline {
@@ -115,6 +132,13 @@
   --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
   --color-sidebar-border: var(--sidebar-border);
   --color-sidebar-ring: var(--sidebar-ring);
+  /* Added new color utilities for enhanced feedback */
+  --color-success: var(--success);
+  --color-success-foreground: var(--success-foreground);
+  --color-warning: var(--warning);
+  --color-warning-foreground: var(--warning-foreground);
+  --color-info: var(--info);
+  --color-info-foreground: var(--info-foreground);
 }
 
 @layer base {
@@ -126,5 +150,34 @@
   }
   .font-heading {
     font-family: var(--font-heading);
+  }
+
+  /* Added utility classes for new colors */
+  .text-success {
+    color: var(--color-success);
+  }
+  .bg-success {
+    background-color: var(--color-success);
+  }
+  .text-success-foreground {
+    color: var(--color-success-foreground);
+  }
+  .text-warning {
+    color: var(--color-warning);
+  }
+  .bg-warning {
+    background-color: var(--color-warning);
+  }
+  .text-warning-foreground {
+    color: var(--color-warning-foreground);
+  }
+  .text-info {
+    color: var(--color-info);
+  }
+  .bg-info {
+    background-color: var(--color-info);
+  }
+  .text-info-foreground {
+    color: var(--color-info-foreground);
   }
 }

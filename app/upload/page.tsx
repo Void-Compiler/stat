@@ -20,6 +20,8 @@ import {
   TrendingUp,
   FileOutput,
   Settings,
+  Sparkles,
+  Zap,
 } from "lucide-react"
 import Link from "next/link"
 
@@ -202,13 +204,13 @@ export default function UploadPage() {
   return (
     <div className="min-h-screen bg-background">
       {/* Header */}
-      <header className="border-b bg-card">
+      <header className="border-b bg-card shadow-sm">
         <div className="container mx-auto px-6 py-4">
           <div className="flex items-center justify-between">
             <div className="flex items-center gap-4">
               <div className="flex items-center gap-2">
-                <div className="w-8 h-8 bg-primary rounded-lg flex items-center justify-center">
-                  <BarChart3 className="w-5 h-5 text-primary-foreground" />
+                <div className="w-10 h-10 bg-gradient-to-br from-primary to-accent rounded-xl flex items-center justify-center shadow-lg">
+                  <BarChart3 className="w-6 h-6 text-primary-foreground" />
                 </div>
                 <div>
                   <h1 className="font-heading font-bold text-xl text-foreground">StatSense AI</h1>
@@ -216,7 +218,8 @@ export default function UploadPage() {
                 </div>
               </div>
             </div>
-            <Badge variant="secondary" className="text-xs">
+            <Badge variant="secondary" className="text-xs bg-accent/10 text-accent border-accent/20 gap-1">
+              <Sparkles className="w-3 h-3" />
               AI-Powered
             </Badge>
           </div>
@@ -225,12 +228,12 @@ export default function UploadPage() {
 
       <div className="flex">
         {/* Sidebar */}
-        <aside className="w-64 min-h-[calc(100vh-73px)] bg-sidebar border-r">
+        <aside className="w-64 min-h-[calc(100vh-73px)] bg-sidebar border-r border-sidebar-border">
           <nav className="p-4 space-y-2">
             <Link href="/">
               <Button
                 variant="ghost"
-                className="w-full justify-start gap-3 text-sidebar-foreground hover:bg-sidebar-accent hover:text-sidebar-accent-foreground"
+                className="w-full justify-start gap-3 text-sidebar-foreground hover:bg-sidebar-accent hover:text-sidebar-accent-foreground transition-all duration-200 hover:translate-x-1"
               >
                 <Home className="w-4 h-4" />
                 Dashboard
@@ -238,7 +241,7 @@ export default function UploadPage() {
             </Link>
             <Button
               variant="ghost"
-              className="w-full justify-start gap-3 bg-sidebar-accent text-sidebar-accent-foreground"
+              className="w-full justify-start gap-3 bg-primary text-primary-foreground hover:bg-primary/90 shadow-sm"
             >
               <Upload className="w-4 h-4" />
               Upload Data
@@ -286,19 +289,23 @@ export default function UploadPage() {
         <main className="flex-1 p-6">
           <div className="max-w-4xl mx-auto">
             <div className="mb-6">
-              <h1 className="font-heading font-bold text-2xl text-foreground mb-2">Upload Survey Data</h1>
-              <p className="text-muted-foreground">
+              <h1 className="font-heading font-bold text-3xl bg-gradient-to-r from-primary to-accent bg-clip-text text-transparent mb-2">
+                Upload Survey Data
+              </h1>
+              <p className="text-muted-foreground text-lg">
                 Upload your CSV or Excel files to begin the data processing workflow. Files will be automatically
                 validated and prepared for analysis.
               </p>
             </div>
 
             {/* Upload Area */}
-            <Card className="mb-6">
+            <Card className="mb-6 border-2 border-dashed border-primary/20 hover:border-primary/40 transition-colors">
               <CardContent className="p-6">
                 <div
-                  className={`border-2 border-dashed rounded-lg p-8 text-center transition-colors ${
-                    dragActive ? "border-primary bg-primary/5" : "border-muted-foreground/25 hover:border-primary/50"
+                  className={`border-2 border-dashed rounded-xl p-8 text-center transition-all duration-300 ${
+                    dragActive
+                      ? "border-primary bg-primary/10 scale-105"
+                      : "border-muted-foreground/25 hover:border-primary/50 hover:bg-primary/5"
                   }`}
                   onDragEnter={handleDrag}
                   onDragLeave={handleDrag}
@@ -306,11 +313,11 @@ export default function UploadPage() {
                   onDrop={handleDrop}
                 >
                   <div className="flex flex-col items-center gap-4">
-                    <div className="w-16 h-16 bg-primary/10 rounded-full flex items-center justify-center">
-                      <Upload className="w-8 h-8 text-primary" />
+                    <div className="w-20 h-20 bg-gradient-to-br from-primary/20 to-accent/20 rounded-full flex items-center justify-center">
+                      <Upload className="w-10 h-10 text-primary" />
                     </div>
                     <div>
-                      <h3 className="font-heading font-semibold text-lg mb-2">Drop your files here</h3>
+                      <h3 className="font-heading font-semibold text-xl mb-2 text-primary">Drop your files here</h3>
                       <p className="text-muted-foreground mb-4">Supports CSV, XLS, and XLSX files up to 50MB each</p>
                       <input
                         type="file"
@@ -321,8 +328,14 @@ export default function UploadPage() {
                         id="file-upload"
                       />
                       <label htmlFor="file-upload">
-                        <Button asChild className="cursor-pointer">
-                          <span>Choose Files</span>
+                        <Button
+                          asChild
+                          className="cursor-pointer bg-primary hover:bg-primary/90 shadow-lg hover:shadow-xl transition-all duration-200 hover:scale-105 gap-2"
+                        >
+                          <span>
+                            <Zap className="w-4 h-4" />
+                            Choose Files
+                          </span>
                         </Button>
                       </label>
                     </div>
@@ -332,9 +345,9 @@ export default function UploadPage() {
             </Card>
 
             {/* File Requirements */}
-            <Alert className="mb-6">
-              <AlertCircle className="h-4 w-4" />
-              <AlertDescription>
+            <Alert className="mb-6 border-info/20 bg-info/5">
+              <AlertCircle className="h-4 w-4 text-info" />
+              <AlertDescription className="text-info-foreground">
                 <strong>File Requirements:</strong> Please ensure your data format is correct before uploading. Files
                 should contain survey data with proper column headers and consistent data types.
               </AlertDescription>

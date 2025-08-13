@@ -6,7 +6,18 @@ import { Select, SelectTrigger, SelectValue, SelectContent, SelectItem } from "@
 import { Tabs, TabsList, TabsTrigger, TabsContent } from "@/components/ui/tabs"
 import { Button } from "@/components/ui/button"
 import Link from "next/link"
-import { Database, CheckCircle, AlertTriangle, X, RefreshCw, Eye, Filter, TrendingUp } from "lucide-react"
+import {
+  Database,
+  CheckCircle,
+  AlertTriangle,
+  X,
+  RefreshCw,
+  Eye,
+  Filter,
+  TrendingUp,
+  BarChart3,
+  Zap,
+} from "lucide-react"
 
 interface UploadedFileData {
   id: string
@@ -123,28 +134,54 @@ export default function CleanPage() {
     <div className="min-h-screen bg-background">
       <div className="flex">
         {/* Sidebar */}
-        <aside className="w-64 p-4 bg-sidebar">{/* Sidebar content */}</aside>
+        <aside className="w-64 p-4 bg-sidebar border-r border-sidebar-border">
+          <nav className="space-y-2">
+            <Link href="/">
+              <Button
+                variant="ghost"
+                className="w-full justify-start gap-3 text-sidebar-foreground hover:bg-sidebar-accent hover:text-sidebar-accent-foreground transition-all duration-200 hover:translate-x-1"
+              >
+                <BarChart3 className="w-4 h-4" />
+                Dashboard
+              </Button>
+            </Link>
+            <Button
+              variant="ghost"
+              className="w-full justify-start gap-3 bg-primary text-primary-foreground hover:bg-primary/90 shadow-sm"
+            >
+              <Database className="w-4 h-4" />
+              Clean & Validate
+            </Button>
+          </nav>
+        </aside>
 
         {/* Main Content */}
         <main className="flex-1 p-6">
           <div className="max-w-6xl mx-auto">
             <div className="mb-6">
-              <h1 className="font-heading font-bold text-2xl text-foreground mb-2">Clean and Validate Data</h1>
-              <p className="text-muted-foreground">
+              <h1 className="font-heading font-bold text-3xl bg-gradient-to-r from-primary to-accent bg-clip-text text-transparent mb-2">
+                Clean and Validate Data
+              </h1>
+              <p className="text-muted-foreground text-lg">
                 Review and clean your survey data using AI-powered validation and automated cleaning rules.
               </p>
             </div>
 
             {uploadedFiles.length === 0 ? (
-              <Card className="mb-6">
+              <Card className="mb-6 border-primary/20">
                 <CardContent className="p-8 text-center">
-                  <Database className="w-12 h-12 text-muted-foreground mx-auto mb-4" />
-                  <h3 className="font-heading font-semibold text-lg mb-2">No Files Uploaded</h3>
+                  <div className="w-16 h-16 bg-gradient-to-br from-primary/20 to-accent/20 rounded-full flex items-center justify-center mx-auto mb-4">
+                    <Database className="w-8 h-8 text-primary" />
+                  </div>
+                  <h3 className="font-heading font-semibold text-xl mb-2 text-primary">No Files Uploaded</h3>
                   <p className="text-muted-foreground mb-4">
                     Please upload your survey data files first to begin the cleaning process.
                   </p>
                   <Link href="/upload">
-                    <Button>Upload Data Files</Button>
+                    <Button className="bg-primary hover:bg-primary/90 shadow-lg hover:shadow-xl transition-all duration-200 hover:scale-105 gap-2">
+                      <Zap className="w-4 h-4" />
+                      Upload Data Files
+                    </Button>
                   </Link>
                 </CardContent>
               </Card>
@@ -182,50 +219,50 @@ export default function CleanPage() {
 
                   <TabsContent value="overview" className="space-y-6">
                     <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
-                      <Card>
+                      <Card className="bg-gradient-to-br from-success/5 to-success/10 border-success/20">
                         <CardContent className="p-4">
                           <div className="flex items-center gap-2 mb-2">
-                            <CheckCircle className="w-4 h-4 text-green-500" />
-                            <span className="text-sm font-medium">Total Records</span>
+                            <CheckCircle className="w-4 h-4 text-success" />
+                            <span className="text-sm font-medium text-success">Total Records</span>
                           </div>
-                          <div className="text-2xl font-heading font-bold">
+                          <div className="text-2xl font-heading font-bold text-success">
                             {selectedFileData?.fullData?.length || 0}
                           </div>
                           <p className="text-xs text-muted-foreground">Survey responses</p>
                         </CardContent>
                       </Card>
 
-                      <Card>
+                      <Card className="bg-gradient-to-br from-warning/5 to-warning/10 border-warning/20">
                         <CardContent className="p-4">
                           <div className="flex items-center gap-2 mb-2">
-                            <AlertTriangle className="w-4 h-4 text-yellow-500" />
-                            <span className="text-sm font-medium">Issues Found</span>
+                            <AlertTriangle className="w-4 h-4 text-warning" />
+                            <span className="text-sm font-medium text-warning">Issues Found</span>
                           </div>
-                          <div className="text-2xl font-heading font-bold">{dataIssues.length}</div>
+                          <div className="text-2xl font-heading font-bold text-warning">{dataIssues.length}</div>
                           <p className="text-xs text-muted-foreground">Needs attention</p>
                         </CardContent>
                       </Card>
 
-                      <Card>
+                      <Card className="bg-gradient-to-br from-destructive/5 to-destructive/10 border-destructive/20">
                         <CardContent className="p-4">
                           <div className="flex items-center gap-2 mb-2">
-                            <X className="w-4 h-4 text-red-500" />
-                            <span className="text-sm font-medium">Critical Issues</span>
+                            <X className="w-4 h-4 text-destructive" />
+                            <span className="text-sm font-medium text-destructive">Critical Issues</span>
                           </div>
-                          <div className="text-2xl font-heading font-bold">
+                          <div className="text-2xl font-heading font-bold text-destructive">
                             {dataIssues.filter((i) => i.severity === "high").length}
                           </div>
                           <p className="text-xs text-muted-foreground">High priority</p>
                         </CardContent>
                       </Card>
 
-                      <Card>
+                      <Card className="bg-gradient-to-br from-info/5 to-info/10 border-info/20">
                         <CardContent className="p-4">
                           <div className="flex items-center gap-2 mb-2">
-                            <Database className="w-4 h-4 text-blue-500" />
-                            <span className="text-sm font-medium">Columns</span>
+                            <Database className="w-4 h-4 text-info" />
+                            <span className="text-sm font-medium text-info">Columns</span>
                           </div>
-                          <div className="text-2xl font-heading font-bold">
+                          <div className="text-2xl font-heading font-bold text-info">
                             {selectedFileData?.fullData?.[0] ? Object.keys(selectedFileData.fullData[0]).length : 0}
                           </div>
                           <p className="text-xs text-muted-foreground">Data fields</p>
